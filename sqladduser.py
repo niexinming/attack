@@ -29,6 +29,57 @@ def first_output():
     print "        ______( (_  / \______"
     print "      ,'  ,-----'   |        \\"
     print "      `--{__________)        \/"
+def end_succes():
+    print "                  *** ###  ### ***"
+    print "              *##                  ##*"
+    print "          *##                          ##*"
+    print "       *##                                ##*"
+    print "     *##                                    ##*"
+    print "   *##          **                **          ##*"
+    print "  *##          *@@*              *@@*          ##*"
+    print "  *##          *@@*              *@@*          ##*"
+    print " *##            **                **            ##*"
+    print "*##                                              ##*"
+    print "*##                      ___                     ##*"
+    print "*##                     |BY:|                    ##*"
+    print "*##        s            |CCW|           s        ##*"
+    print "*##         s            ---           s         ##*"
+    print " *##         s                        s         ##*"
+    print "  *##         's                    s'         ##*"
+    print "   *##          's                s'          ##*"
+    print "     *##          's            s'          ##*"
+    print "       *##           ~ |~v~v~v|~         ##*"
+    print "          *##          |      |        ##*"
+    print "              *##      |   |  |     ##*"
+    print "                  ***  |   |  | ***"
+    print "                       |   |  |"
+    print "                       |   |  |"
+    print "                       |   |  |"
+    print "                       |      |"
+    print "                       |  /\  |"
+    print "                       |/    \|"
+
+def end_fail():
+    print "                       __---__"
+    print "                    _-       /--______"
+    print "               __--( /     \ )XXXXXXXXXXX\v."
+    print "             .-XXX(   O   O  )XXXXXXXXXXXXXXX-"
+    print "            /XXX(       U     )        XXXXXXX\\"
+    print "         /XXXXX(              )--_  XXXXXXXXXXX\\"
+    print "         /XXXXX/ (      O     )   XXXXXX   \XXXXX\\"
+    print "         XXXXX/   /            XXXXXX   \__ \XXXXX"
+    print "         XXXXXX__/          XXXXXX         \__---->"
+    print " ---___  XXX__/          XXXXXX      \__         /"
+    print "   \-  --__/   ___/\  XXXXXX            /  ___--/="
+    print "    \-\    ___/    XXXXXX              '--- XXXXXX"
+    print "       \-\/XXX\ XXXXXX                      /XXXXX"
+    print "         \XXXXXXXXX   \                    /XXXXX/"
+    print "          \XXXXXX      >                 _/XXXXX/"
+    print "            \XXXXX--__/              __-- XXXX/"
+    print "             -XXXXXXXX---------------  XXXXXX-"
+    print "               \XXXXXXXXXXXXXXXXXXXXXXXXXX/"
+    print "                  ""VXXXXXXXXXXXXXXXXXXV"""
+
 
 def crawl(host):
     try:
@@ -66,7 +117,7 @@ def is_safe(host):
         sys.stdout.flush()
         time.sleep(2)
     print ""
-def find_target(host):
+def scan_port_os(host):
     ay=[]
     for randomi in xrange(0,200):
         ay.append(random.randint(10,10000))
@@ -158,7 +209,7 @@ if __name__ == '__main__':
 
     first_output()
     is_safe(ipaddr)
-    find_target(ipaddr)
+    scan_port_os(ipaddr)
     attack(ipaddr,5)
     del_file(ipaddr)
     time.sleep(3)
@@ -166,3 +217,7 @@ if __name__ == '__main__':
         os.system('sh ~/sqlmap')
         os.system('rm -rf ~/.sqlmap/output')
         res_out()
+        end_fail()
+    end_succes()
+    print "" + Fore.RESET + Style.RESET_ALL
+    print "\033[0m "
